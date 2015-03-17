@@ -33,7 +33,8 @@ $(function() {
          */
         function testURL(myfeed) {
              it('all feeds have an URL', function() {
-                expect(myfeed.url).not.toBe(0);
+                expect(myfeed.url).toBeDefined();
+                expect(myfeed.url.length).not.toBe(0);
 
              });
         }
@@ -44,7 +45,8 @@ $(function() {
          */
         function testName(myfeed){
             it('ensure each feed has a name', function() {
-                expect(myfeed.name).not.toBe(0);
+                expect(myfeed.name).toBeDefined();
+                expect(myfeed.name.length).not.toBe(0);
             });
         }
 
@@ -54,7 +56,7 @@ $(function() {
             testName(feed);
         });
 
-    }); // describe('RSS Feeds', function() {
+    });
 
 
     /* TODO: Write a new test suite named "The menu" */
@@ -86,18 +88,18 @@ $(function() {
             $('.menu-icon-link').trigger('click');
           });
 
-          
+
           it('menu is not hidden', function() {
             expect(menu.hasClass('menu-hidden')).toBeFalsy();
           });
 
-          
+
           it('menu is hidden correctly', function() {
             expect(menu.hasClass('menu-hidden')).toBeTruthy();
           });
 
-        }); 
-    }); //describe('The menu', function() {
+        });
+    });
 
 
 
@@ -115,18 +117,18 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
          it('at least, a single .feed element exist', function(done) {
-            var menu = $('.feed');
+            var menu = $('.feed .entry');
 
-            expect(menu.children().length).toBeGreaterThan(0);
+            expect(menu.length).toBeGreaterThan(0);
             done();
          });
-    }); // describe('Initial Entries', function() {
+    });
 
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
 
-        var before; 
+        var before;
 
         beforeEach(function(done) {
             before = $('.feed').find('h2').text();
@@ -144,5 +146,5 @@ $(function() {
         });
 
     });
-       
-}()); // function
+
+}());
